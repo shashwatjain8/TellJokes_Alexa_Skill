@@ -34,12 +34,17 @@ def no_Intent():
     message = 'Well that is fine... Maybe your sense of humor will wake up some day! Haha just kidding!'
     return statement(message)
 
-@ask.intent("CancelIntent")
+@ask.intent("AMAZON.CancelIntent")
 def cancel_Intent():
     message = 'See you again...bye'
     return statement(message)
 
-@ask.intent("HelpIntent")
+@ask.intent("AMAZON.StopIntent")
+def stop_Intent():
+    message = 'See you again...bye'
+    return statement(message)
+
+@ask.intent("AMAZON.HelpIntent")
 def help_Intent():
     message = 'Say yes to hear a joke'
     return question(message)
