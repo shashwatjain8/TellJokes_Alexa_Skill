@@ -41,7 +41,7 @@ def cancel_Intent():
 
 @ask.intent("HelpIntent")
 def help_Intent():
-    message = 'Say yes to hear a joke..'
+    message = 'Say yes to hear a joke'
     return question(message)
 
 if __name__ == '__main__':
