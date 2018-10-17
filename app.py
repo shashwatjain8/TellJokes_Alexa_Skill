@@ -1,14 +1,19 @@
 from flask import Flask
 from flask_ask import Ask, statement, question, session
-
+import random
 import requests
+import pandas as pd
+import csv 
 
 app = Flask(__name__)
 ask = Ask(app, '/telljokes')
 
+df = pd.read_csv('funjokes.csv')
+
+
 def getJoke():
-    return "random joke"
-    pass
+    x = random.randint(1,9984)
+    return df.iloc[x]['Joke']
 
 @app.route('/')
 def homepage():
@@ -16,7 +21,7 @@ def homepage():
 
 @ask.launch
 def start_skill():
-    message = 'Hey.. would you like to hear a Joke'
+    message = 'Hey.. would you like to hear a Joke?'
     return question(message)
 
 @ask.intent("YesIntent")
@@ -27,13 +32,18 @@ def share_joke():
 
 @ask.intent("NoIntent")
 def no_Intent():
-    message = 'Well that is fine... Maybe your humor will wake up some day!'
+    message = 'Well that is fine... Maybe your sense of humor will wake up some day! Haha just kidding!'
     return statement(message)
 
 @ask.intent("CancelIntent")
 def cancel_Intent():
     message = 'See you again...bye'
     return statement(message)
+
+@ask.intent("HelpIntent")
+def help_Intent():
+    message = 'Say yes to hear a joke..'
+    return question(message)
 
 if __name__ == '__main__':
     app.run(threaded = True)
