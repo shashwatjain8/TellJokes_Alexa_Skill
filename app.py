@@ -3,7 +3,6 @@ from flask_ask import Ask, statement, question, session
 import random
 import requests
 import pandas as pd
-import csv 
 
 app = Flask(__name__)
 ask = Ask(app, '/telljokes')
