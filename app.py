@@ -22,7 +22,7 @@ def start_skill():
 @ask.intent("YesIntent")
 def share_joke():
     joke = getJoke()
-    message_Joke = 'Here is a joke for you!'.format(joke)
+    message_Joke = 'Here is a joke for you!{}'.format(joke)
     return statement(message_Joke)
 
 @ask.intent("NoIntent")
@@ -36,4 +36,4 @@ def cancel_Intent():
     return statement(message)
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(threaded = True)
